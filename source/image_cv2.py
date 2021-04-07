@@ -21,45 +21,8 @@ labels = [] # Label of Image
 #     label = imagePath.split("/")[-2]
 #     print(label)
 
-
-image = cv.imread("/media/harry/새 볼륨/CODE/Logo detection/logoDetection/logos/ford/00002.png")
-plt.imshow(image)
-plt.show()
-
-# Convert to Gray and Resize
-gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
-logo = cv.resize(gray, (200, 100))
-
-# Calculate Histogram of Test Image
-hist =  feature.hog(
-            logo,
-            orientations=9,
-            pixels_per_cell=(10, 10),
-            cells_per_block=(2, 2),
-            transform_sqrt=True,
-            block_norm="L1"
-    )
-
-# Make pictures default Height
-height, width = image.shape[:2]
-reWidth = int((300/height)*width)
-image = cv.resize(image, (reWidth, 300))
-# cv.imshow("ford Grouthtruth", image)
-# plt.show()
-
-# Write predicted label over the Image
-image = cv.putText(image, "Ford Prediction", (10, 30), cv.FONT_HERSHEY_TRIPLEX, 1.2, (0 ,255, 0), 4)
-# Displaying the image
-plt.imshow(image) 
-plt.show()
-
-# Get Image name and show Image
-# cv.imshow("ford Grouthtruth", image)
-
-sys.exit(1)
-
-
-
+## Test preprocessing an image
+print("Test preprocessing an image...")
 image = cv.imread("/media/harry/새 볼륨/CODE/Logo detection/logoDetection/logos/ford/00002.png")
 plt.imshow(image)
 plt.show()
@@ -98,3 +61,39 @@ ax2.axis('off')
 ax2.imshow(hog_image_rescaled, cmap=plt.cm.gray)
 ax2.set_title('Histogram of Oriented Gradients')
 plt.show()
+
+
+
+
+## Test prediction steps for an image
+print("Test prediction steps for an image")
+
+image = cv.imread("/media/harry/새 볼륨/CODE/Logo detection/logoDetection/logos/ford/00002.png")
+plt.imshow(image)
+plt.show()
+
+# Convert to Gray and Resize
+gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
+logo = cv.resize(gray, (200, 100))
+
+# Calculate Histogram of Test Image
+hist =  feature.hog(
+            logo,
+            orientations=9,
+            pixels_per_cell=(10, 10),
+            cells_per_block=(2, 2),
+            transform_sqrt=True,
+            block_norm="L1"
+    )
+
+# Make pictures default Height
+height, width = image.shape[:2]
+reWidth = int((300/height)*width)
+image = cv.resize(image, (reWidth, 300))
+
+# Write predicted label over the Image
+image = cv.putText(image, "Ford Prediction", (10, 30), cv.FONT_HERSHEY_TRIPLEX, 1.2, (0 ,255, 0), 4)
+# Displaying the image
+plt.imshow(image) 
+plt.show()
+
